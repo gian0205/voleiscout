@@ -9,7 +9,11 @@
       "Bash(\"/c/Program Files \\(x86\\)/GitHub CLI/gh.exe\" auth status)",
       "Bash(winget install:*)",
       "Bash(cmd.exe /c \"winget install --id GitHub.cli -e --accept-package-agreements --accept-source-agreements\")",
-      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\")"
+      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\")",
+      "Bash(grep -oP '.{0,50}Conectando.{0,50}' \"C:/Users/gpiva.SESSP/voleiscout/index.html\")",
+      "Bash(grep -o '.\\\\{0,80\\\\}Conectando.\\\\{0,80\\\\}' \"C:/Users/gpiva.SESSP/voleiscout/index.html\")",
+      "Bash(pip install:*)",
+      "Bash(python -c \"from app import app; client=app.test_client\\(\\); r=client.get\\('/api/data'\\); print\\('Status:', r.status_code, 'Body:', r.data[:100]\\)\")"
     ]
   }
 }

@@ -28,6 +28,8 @@ def index():
 @app.route("/api/data", methods=["GET"])
 def get_data():
     data = read_data()
+    if data is None:
+        return jsonify(None)
     return jsonify(data)
 
 
