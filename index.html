@@ -79,7 +79,7 @@ function tL(t){return t&&t.rs?LOGO_RS:LOGO_MAIO;}
 function tF(id){if(!D||!D.teams)return null;for(var i=0;i<D.teams.length;i++){if(D.teams[i].id===id)return D.teams[i];}return null;}
 function gF(id){if(!D||!D.games)return null;for(var i=0;i<D.games.length;i++){if(D.games[i].id===id)return D.games[i];}return null;}
 var D=null,tab="config",subTab="teams",S={aid:null,sp:null,sa:null,cs:1,us:[],tm:0,rn:false,ti:null};
-fetch("/api/data").then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(v){if(v&&typeof v==="object"&&Object.keys(v).length>0){D=v;}else{D=getD();save();}render();}).catch(function(e){console.error("Load error:",e);D=getD();render();});
+try{fetch("/api/data").then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.text();}).then(function(t){var v=null;try{v=JSON.parse(t);}catch(e){}if(v&&typeof v==="object"&&Object.keys(v).length>0){D=v;}else{D=getD();save();}render();}).catch(function(e){document.getElementById("app").innerHTML="<div style='padding:40px;color:red'>Erro fetch: "+e.message+"</div>";D=getD();render();});}catch(e){document.getElementById("app").innerHTML="<div style='padding:40px;color:red'>Erro JS: "+e.message+"</div>";D=getD();render();}
 function save(){if(D)fetch("/api/data",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(D)});}
 function render(){if(!D)return;var a=document.getElementById("app");var h='<header><img class="hlogo" src="'+LOGO_ASV+'"><div style="flex:1"><div class="htitle">ASSOCIAÇÃO SCOLA</div><div class="hsub">de Voleibol — Scout App</div></div></header><div class="tab">';
 if(tab==="config")h+=rCfg();else if(tab==="scout")h+=rSct();else if(tab==="stats")h+=rSts();
