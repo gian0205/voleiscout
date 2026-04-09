@@ -13,7 +13,12 @@
       "Bash(grep -oP '.{0,50}Conectando.{0,50}' \"C:/Users/gpiva.SESSP/voleiscout/index.html\")",
       "Bash(grep -o '.\\\\{0,80\\\\}Conectando.\\\\{0,80\\\\}' \"C:/Users/gpiva.SESSP/voleiscout/index.html\")",
       "Bash(pip install:*)",
-      "Bash(python -c \"from app import app; client=app.test_client\\(\\); r=client.get\\('/api/data'\\); print\\('Status:', r.status_code, 'Body:', r.data[:100]\\)\")"
+      "Bash(python -c \"from app import app; client=app.test_client\\(\\); r=client.get\\('/api/data'\\); print\\('Status:', r.status_code, 'Body:', r.data[:100]\\)\")",
+      "Bash(python app.py)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(python -c ':*)",
+      "Bash(curl -s http://localhost:3000/api/data)",
+      "Bash(wait)"
     ]
   }
 }
