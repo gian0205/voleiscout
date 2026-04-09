@@ -1,13 +1,18 @@
-FROM python:3.12-slim
+FROM node:20-alpine AS build
+WORKDIR /app/client
+COPY client/package*.json ./
+RUN npm ci
+COPY client/ ./
+RUN npm run build
 
+FROM node:20-alpine
 WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
+COPY server/package*.json ./
+RUN npm ci --production
+COPY server/ ./
+COPY --from=build /app/client/dist ./public
+RUN mkdir -p /app/data
 VOLUME /app/data
 EXPOSE 3000
-
-CMD ["gunicorn", "--bind", "0.0.0.0:3000", "--workers", "1", "app:app"]
+ENV DB_PATH=/app/data/voleiscout.db
+CMD ["node", "index.js"]

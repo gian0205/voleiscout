@@ -1,6 +1,7 @@
-__pycache__
-*.pyc
+node_modules
+client/node_modules
+server/node_modules
+dist
+*.db
 .git
-.gitignore
-.env
-*.md
+.claude
